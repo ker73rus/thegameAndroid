@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -54,12 +56,18 @@ class UpgradeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = [
+      _CardData(name: "ByClickUpgrade 1", cost: 10, imagePath: "assets/ByClick.png", boost: 1, lvl: 1),
+      _CardData(name: "ByClickUpgrade 2", cost: 1000, imagePath: "assets/ByClick.png", boost: 100, lvl: 1),
+      _CardData(name: "ByClickUpgrade 3", cost: 100000, imagePath: "assets/ByClick.png", boost: 1000, lvl: 1),
+      _CardData(name: "PerSecUpgrade 1", cost: 10, imagePath: "assets/PerSecond.png", boost: 1, lvl: 1),
+      _CardData(name: "PerSecUpgrade 2", cost: 1000, imagePath: "assets/PerSecond.png", boost: 100, lvl: 1),
+      _CardData(name: "PerSecUpgrade 3", cost: 100000, imagePath: "assets/PerSecond.png", boost: 1000, lvl: 1),
+    ];
     return Center(
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              _Card("ByClickUpgrade 1", 100, 1, 1),
-            ],
+            children: data.map((e)=> _Card.fromData(e)).toList(),
           ),
         )
     );
@@ -69,19 +77,19 @@ class UpgradeList extends StatelessWidget {
 class _Card extends StatelessWidget {
   final String name;
   final int cost;
-  final IconData icon;
+  final String imagePath;
   final int boost;
   final int lvl;
 
   const _Card(this.name, this.cost, this.boost, this.lvl,
-      {this.icon = Icons.icecream});
+      {this.imagePath = "assets/empty"});
 
   factory _Card.fromData(_CardData data) =>
       _Card(data.name,
         data.cost,
         data.boost,
         data.lvl,
-        icon: data.icon,
+        imagePath: data.imagePath,
         );
 
   @override
@@ -101,11 +109,18 @@ class _Card extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.all(5),
       child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Icon(icon),
+        children: [Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: SizedBox(
+            width: 40,
+            height: 40,
+            child: Image(
+              image: AssetImage(imagePath),
+              errorBuilder: (_,__,___) => const Placeholder(),
+              fit: BoxFit.cover,
+            ),
           ),
+        ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,10 +160,10 @@ class _Card extends StatelessWidget {
 class _CardData {
   final String name;
   final int cost;
-  final IconData icon;
+  final String imagePath;
   final int boost;
   final int lvl;
 
   _CardData(
-      {required this.name, required this.cost, required this.icon, required this.boost, required this.lvl});
+      {required this.name, required this.cost, required this.imagePath, required this.boost, required this.lvl});
 }
