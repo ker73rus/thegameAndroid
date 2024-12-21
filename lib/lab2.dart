@@ -38,14 +38,14 @@ void main() {
 }
 
 Future<void> printThis(List<Upgrade> t) async {
-  await Future.delayed(const Duration(milliseconds: 1500),
-      () => print("Подождём 1500 мс и напишем: ${t[0].name}"));
-  await Future.delayed(const Duration(milliseconds: 1500),
-      () => print("Подождём 1500 мс и напишем: ${t[1].name}"));
-  await Future.delayed(const Duration(milliseconds: 1500),
-      () => print("Подождём 1500 мс и напишем: ${t[2].name}"));
-  await Future.delayed(const Duration(milliseconds: 1500),
-      () => print("Подождём 1500 мс и напишем: ${t[3].name}"));
+  await Future.delayed(
+      const Duration(milliseconds: 1500), () => print("Подождём 1500 мс и напишем: ${t[0].name}"));
+  await Future.delayed(
+      const Duration(milliseconds: 1500), () => print("Подождём 1500 мс и напишем: ${t[1].name}"));
+  await Future.delayed(
+      const Duration(milliseconds: 1500), () => print("Подождём 1500 мс и напишем: ${t[2].name}"));
+  await Future.delayed(
+      const Duration(milliseconds: 1500), () => print("Подождём 1500 мс и напишем: ${t[3].name}"));
 }
 
 extension toString on Upgrade {

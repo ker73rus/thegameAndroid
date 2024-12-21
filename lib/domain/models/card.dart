@@ -1,10 +1,16 @@
 class CardData {
+  final String id;
   final String name;
-  final double cost;
+  double cost;
   final String imagePath;
-  final double boost;
-  final int lvl;
+  double boost;
+  int lvl;
 
   CardData(
-      {required this.name, required this.cost, required this.imagePath, required this.boost, required this.lvl});
+      {required this.name,
+      required this.id,
+      required this.cost,
+      required this.imagePath,
+      required this.boost,
+      required this.lvl});
 }
